@@ -45,9 +45,7 @@ public class EstadoDespachoServiceImpl implements EstadoDespachoService {
     public ResponseEntity<Object> registrarEstDespacho(RegistrarEstDespachoRequest request) {
         EstadoDespachoEntity entity;
         if (request.getIdEstDespacho() == 0) {
-            var idCorr = estadoDespachoRepository.getIdCorrelativo();
             entity = new EstadoDespachoEntity();
-            entity.setIdEstadoDespacho(idCorr);
             entity.setDescripcion(request.getDescripcion());
             entity.setActivo(Boolean.TRUE);
             entity.setFechaCreacion(Date.valueOf(LocalDate.now()));

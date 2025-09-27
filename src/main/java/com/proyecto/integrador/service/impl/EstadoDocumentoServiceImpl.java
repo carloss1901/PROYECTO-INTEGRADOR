@@ -45,9 +45,7 @@ public class EstadoDocumentoServiceImpl implements EstadoDocumentoService {
     public ResponseEntity<Object> registrarEstDocumento(RegistrarEstDocumentoRequest request) {
         EstadoDocumentoEntity entity;
         if (request.getIdEstDocumento() == 0) {
-            var idCorr = estadoDocumentoRepository.getIdCorrelativo();
             entity = new EstadoDocumentoEntity();
-            entity.setIdEstadoDocumento(idCorr);
             entity.setDescripcion(request.getDescripcion());
             entity.setActivo(Boolean.TRUE);
             entity.setFechaCreacion(Date.valueOf(LocalDate.now()));

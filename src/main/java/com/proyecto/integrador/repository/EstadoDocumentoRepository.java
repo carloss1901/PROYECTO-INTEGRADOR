@@ -13,13 +13,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EstadoDocumentoRepository extends JpaRepository<EstadoDocumentoEntity, Integer> {
-
-    @Query(value = """
-        SELECT COALESCE(MAX(ID_ESTADO_DOCUMENTO), 0) + 1
-        FROM ESTADO_DOCUMENTO
-        """, nativeQuery = true)
-    Integer getIdCorrelativo();
-
     @Query(value = """
             SELECT
                 ID_ESTADO_DOCUMENTO                         AS idEstadoDocumento,

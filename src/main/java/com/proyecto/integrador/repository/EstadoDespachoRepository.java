@@ -12,18 +12,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EstadoDespachoRepository extends JpaRepository<EstadoDespachoEntity, Integer> {
-
-    @Query(value = """
-        SELECT COALESCE(MAX(ID_ESTADO_DESPACHO), 0) + 1
-        FROM ESTADO_DESPACHO
-        """, nativeQuery = true)
-    Integer getIdCorrelativo();
-
     @Query(value = """
         SELECT
             ID_ESTADO_DESPACHO	                        AS idEstadoDespacho,
             DESCRIPCION,
             ACTIVO,
+            CASE WHEN ACTIVO = 1 THEN 'ACTIVO' ELSE 'INACTIVO'
+            END AS estadoDsc,
             DATE_FORMAT(FECHA_CREACION, '%d/%m/%Y')	    AS fecCreacion,
             DATE_FORMAT(FECHA_MODIFICACION, '%d/%m/%Y') AS fecModificacion
         FROM ESTADO_DESPACHO
